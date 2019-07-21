@@ -1,0 +1,53 @@
+<mat-card class='container'>
+    <div class='footer'>
+        <div class='left title'>
+            Consulta de CPF:
+        </div>
+        <div class='right'>
+            <button (click)='viewServer()' mat-stroked-button class="button">Inf. Servidor</button>
+        </div>
+    </div>
+    <div class='content'>
+        <div class='status'>
+            <p *ngIf='cpfHistory'>CPF: {{ this.cpfHistory | mask:'000.000.000-00' }}</p><br>
+            <div class='free' *ngIf='status === "invalid"'>
+                <lottie-animation-view [options]="lottie" [width]="80" [height]="80">
+                </lottie-animation-view>
+                &nbsp;&nbsp;CPF inválido!
+            </div>
+            <div class='free' *ngIf='status === "free"'>
+                <lottie-animation-view [options]="lottie" [width]="80" [height]="80">
+                </lottie-animation-view>
+                &nbsp;FREE
+            </div>
+
+            <div class='free' *ngIf='status === "blocked"'>
+                <lottie-animation-view [options]="lottie" [width]="80" [height]="80">
+                </lottie-animation-view>
+                &nbsp;BLOCK
+            </div>
+
+        </div>
+        <div class='cpf-input'>
+            <div class="input-container">
+                <input id="name" class="input" [(ngModel)]='cpf' type="text" mask='000.000.000-00' required />
+                <label class="label" for="name">CPF</label>
+            </div>
+        </div>
+
+        <div class='submit'>
+            <button [disabled]='cpf.length < 11' (click)='submit()' mat-raised-button class="button"
+                color="primary">Consultar</button>
+        </div>
+
+    </div>
+
+    <div class='footer'>
+        <div class='left'>
+            <button (click)='openDialog()' mat-raised-button class="button" color="warn">Bloquear CPF</button>
+        </div>
+        <div class='right'>
+            <button (click)='viewBlocked()' mat-raised-button class="button" color="accent">Ver CPFs bloqueados</button>
+        </div>
+    </div>
+</mat-card>

@@ -1,0 +1,17 @@
+<div class='container'>
+
+    <mat-card>
+        <div class='title'>
+            <h2>Status do servidor:</h2>
+        </div>
+        <div class='content'>
+            <p>Running: {{ runningTime }}</p>
+            <p>Total de consultas: {{ totalConsult }}</p>
+            <p>Total de CPFs bloqueados: {{ totalBlocked }}</p>
+        </div>
+    </mat-card>
+    <br><br>
+    <button (click)='back()' mat-raised-button class="button" color="accent">
+        < Voltar
+    </button> 
+</div>

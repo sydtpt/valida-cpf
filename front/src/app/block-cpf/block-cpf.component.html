@@ -1,0 +1,40 @@
+<div class='content' *ngIf='view === "entry"'>
+    <div class='title'>
+        Bloquear CPF:
+    </div>
+    <div class='cpf-input'>
+        <div class="input-container">
+            <input id="name" class="input" [(ngModel)]='cpf' type="text" mask='000.000.000-00' required />
+            <label class="label" for="name">CPF</label>
+        </div>
+    </div>
+    <div class='submit'>
+        <button (click)='submit()' [disabled]='cpf.length < 11' mat-raised-button class="button" color="warn">Bloquear
+            CPF</button>
+    </div>
+</div>
+
+<div class='content' *ngIf='view === "result"'>
+    <lottie-animation-view [options]="lottie" [width]="90" [height]="90">
+    </lottie-animation-view><br>
+    <div class='info'>
+        CPF bloqueado: {{ cpf | mask:'000.000.000-00' }}
+    </div>
+</div>
+
+<div class='content' *ngIf='view === "already-blocked"'>
+        <lottie-animation-view [options]="lottie" [width]="90" [height]="90">
+        </lottie-animation-view><br>
+        <div class='info'>
+            O CPF já está bloqueado: {{ cpf | mask:'000.000.000-00' }}
+        </div>
+    </div>
+
+<div class='content' *ngIf='view === "invalid-cpf"'>
+    <lottie-animation-view [options]="lottie" [width]="120" [height]="120">
+    </lottie-animation-view><br>
+    <div class='info'>
+        CPF inválido: {{ cpf | mask:'000.000.000-00' }}
+    </div><br>
+    <button (click)='reset()' mat-raised-button class="button" color="primary">Tentar novamente</button>
+</div>
